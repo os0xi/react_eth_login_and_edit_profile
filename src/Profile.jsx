@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Heading,
@@ -12,22 +12,50 @@ import { useMoralis } from "react-moralis";
 import { useNavigate } from "react-router";
 
 export default function Profile() {
-  const { logout, user } = useMoralis();
+  const { logout, user, setUserData, isUserUpdating } = useMoralis();
   const navigate = useNavigate();
-  console.log(user.attributes.ethAddress);
+  const [username, setUsername] = useState(user.attributes.username);
+  const [email, setEmail] = useState(user.attributes.email);
+  const [password, setPassword] = useState("");
+  const updateUserDetails = () =>
+    setUserData({
+      username,
+      email,
+      password: password === "" ? undefined : password,
+    });
 
   return (
-    <Box textAlign="center">
+    <Box>
+      <Heading textAlign={"right"}>
+        Welcome, {user.attributes.username}!
+      </Heading>
       <Stack spacing={3}>
         <Box>
-          <Input value={user.attributes.username}></Input>
+          <Text>Username</Text>
+          <Input
+            onChange={(event) => setUsername(event.currentTarget.value)}
+            value={username}
+          ></Input>
         </Box>
         <Box>
-          <Input value={user.attributes.username}></Input>
+          <Text>Email</Text>
+          <Input
+            onChange={(event) => setEmail(event.currentTarget.value)}
+            value={email}
+          ></Input>
         </Box>
         <Box>
-          <Input value={user.attributes.username}></Input>
+          <Text>Password</Text>
+          <Input
+            onChange={(event) => setPassword(event.currentTarget.value)}
+            type="password"
+            value={password}
+          ></Input>
         </Box>
+        <Button isLoading={isUserUpdating} onClick={updateUserDetails}>
+          Save
+        </Button>
+
         <Button onClick={(e) => navigate("/")}>Home</Button>
         <Button onClick={() => logout()}>Logout</Button>
       </Stack>

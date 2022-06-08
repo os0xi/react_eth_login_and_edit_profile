@@ -33,7 +33,6 @@ function App() {
   //     </Container>
   //   );
   // }
-  console.log(isAuthenticated);
   return (
     <Container>
       <Heading textAlign="center" m={10}>
