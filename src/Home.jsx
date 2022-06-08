@@ -6,7 +6,6 @@ import { Navigate, useNavigate } from "react-router-dom";
 export default function Home() {
   const { isAuthenticated } = useMoralis();
   const navigate = useNavigate();
-  console.log(isAuthenticated);
   return (
     <Container>
       {isAuthenticated ? "Authenticated" : "Non-authenticated"} home page{" "}

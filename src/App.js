@@ -10,10 +10,16 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useMoralis } from "react-moralis";
-
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  Navigate,
+} from "react-router-dom";
 import { Container } from "@chakra-ui/react";
 import Auth from "./Auth";
-import { Route, Routes, Navigate, Redirect } from "react-router";
+
 import Home from "./Home";
 import Profile from "./Profile";
 function App() {
@@ -25,14 +31,7 @@ function App() {
     isAuthenticating,
     authError,
   } = useMoralis();
-  // if (isAuthenticated) {
-  //   return (
-  //     <Container textAlign="center">
-  //       <Heading>You authenticated!</Heading>
-  //       <Button onClick={() => logout()}>Logout</Button>
-  //     </Container>
-  //   );
-  // }
+
   return (
     <Container>
       <Heading textAlign="center" m={10}>

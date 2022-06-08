@@ -1,11 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { MoralisProvider } from "react-moralis";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const theme = extendTheme({
   config: {
